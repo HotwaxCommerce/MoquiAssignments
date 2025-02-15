@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-facade-xml type="demo">
+    <!-- Party Data -->
+  <relationshipMgr.Party partyId="P1001" partyTypeEnumId="PERSON" description="John Doe"/>
+  <relationshipMgr.Party partyId="P1002" partyTypeEnumId="ORGANIZATION" description="Tech Corp"/>
+
+  <!-- Person Data -->
+  <relationshipMgr.Person partyId="P1001" firstName="John" lastName="Doe"/>
+  <!-- Organization Data -->
+  <relationshipMgr.Organization partyId="P1002" organizationName="Tech Corp"/>
+  <!-- RoleType Data -->
+  <relationshipMgr.RoleType roleTypeId="admin" description="Administrator"/>
+  <relationshipMgr.RoleType roleTypeId="customer" description="Placing Customer"/>
+  <relationshipMgr.RoleType roleTypeId="employer" description="Employer"/>
+  <!-- PartyRole Data -->
+  <relationshipMgr.PartyRole partyId="P1001" roleTypeId="customer"/>
+  <relationshipMgr.PartyRole partyId="P1002" roleTypeId="employer"/>
+  <!-- Contact Mechanism Data -->
+  <relationshipMgr.ContactMech contactMechId="CM1001" contactMechTypeEnumId="PostalAddress" infoString="123 Main St"/>
+  <relationshipMgr.ContactMech contactMechId="CM1002" contactMechTypeEnumId="TelecomNumber" infoString="+1234567890"/>
+
+  <!-- Postal Address Data -->
+  <relationshipMgr.PostalAddress contactMechId="CM1001" address1="123 Main St" city="New York" postalCode="10001"/>
+
+  <!-- Telecom Data -->
+  <relationshipMgr.TelecomNumber contactMechId="CM1002" contactNumber="+1234567890"/>
+
+  <!-- Party Contact Mechanism -->
+  <relationshipMgr.PartyContactMech partyId="P1001" contactMechId="CM1001" contactMechPurposeId="HOME" fromDate="2023-01-01 00:00:00"/>
+  <relationshipMgr.PartyContactMech partyId="P1001" contactMechId="CM1002" contactMechPurposeId="WORK" fromDate="2023-01-01 00:00:00"/>
+</entity-facade-xml>

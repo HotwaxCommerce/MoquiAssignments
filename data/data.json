@@ -1,0 +1,12 @@
+{
+  "Party": [
+    {
+      "partyId": "PER123",
+      "partyTypeId": "PERSON"
+    },
+    {
+      "partyId": "ORG456",
+      "partyTypeId": "ORGANIZATION"
+    }
+  ]
+}

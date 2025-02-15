@@ -1,87 +1,183 @@
-<h2>Welcome to the Party Management System! from html</h2>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relationship Manager</title>
+    <title>Party Manager</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            color: #333;
         }
-
-        /* Navigation Bar */
-        .navbar {
-            background-color: #007bff;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .navbar h1 {
-            margin: 0;
-            color: white;
-            font-size: 24px;
-        }
-
-        /* Main Content */
         .container {
-            max-width: 800px;
+            width: 80%;
             margin: 20px auto;
+            background: white;
             padding: 20px;
-            background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
-
-        h2 {
-            color: #007bff;
+        h1 {
+            text-align: center;
+            color: #333;
         }
-
-        p {
-            line-height: 1.6;
+        .search-form {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
-
-        /* Button */
-        .btn {
-            display: inline-block;
-            background-color: #007bff;
+        .search-form input {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-form button {
+            padding: 8px 12px;
+            border: none;
+            background: #007bff;
             color: white;
-            padding: 10px 15px;
-            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .search-form button:hover {
+            background: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        .add-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background: #28a745;
+            color: white;
             border-radius: 5px;
-            margin-top: 10px;
+            cursor: pointer;
         }
-
-        .btn:hover {
-            background-color: #0056b3;
+        .add-btn:hover {
+            background: #218838;
         }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .container {
-                width: 90%;
-            }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+        .modal input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .modal button {
+            padding: 8px 12px;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .modal button:hover {
+            background: #0056b3;
+        }
+        .close {
+            color: red;
+            cursor: pointer;
+            float: right;
         }
     </style>
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<div class="navbar">
-    <h1>Relationship Manager</h1>
+<div class="container">
+    <h1>Party Manager</h1>
+
+    <div class="search-form">
+        <input type="text" id="searchInput" placeholder="Search parties...">
+        <button onclick="searchParties()">Search</button>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Party ID</th>
+            <th>Party Name</th>
+            <th>Party Type</th>
+        </tr>
+        </thead>
+        <tbody id="partyTable">
+        </tbody>
+    </table>
+
+    <div class="add-btn" onclick="openModal()">+ Add New Party</div>
 </div>
 
-<!-- Main Content -->
-<div class="container">
-    <h2>Welcome to the Relationship Manager</h2>
-    <p>This is your dashboard where you can manage relationships, track activities, and view important data.</p>
-    <a href="#" class="btn">Get Started</a>
+<div class="modal" id="partyModal">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2>Add Party</h2>
+    <input type="text" id="partyId" placeholder="Enter Party ID">
+    <input type="text" id="partyName" placeholder="Enter Party Name">
+    <input type="text" id="partyType" placeholder="Enter Party Type">
+    <button onclick="addParty()">Save</button>
 </div>
+
+<script>
+    function openModal() {
+        document.getElementById('partyModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('partyModal').style.display = 'none';
+    }
+
+    function addParty() {
+        let partyId = document.getElementById('partyId').value;
+        let partyName = document.getElementById('partyName').value;
+        let partyType = document.getElementById('partyType').value;
+
+        if (partyId && partyName && partyType) {
+            let table = document.getElementById('partyTable');
+            let row = table.insertRow();
+            row.insertCell(0).innerText = partyId;
+            row.insertCell(1).innerText = partyName;
+            row.insertCell(2).innerText = partyType;
+            closeModal();
+        } else {
+            alert("Please fill all fields.");
+        }
+    }
+
+    function searchParties() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let rows = document.querySelectorAll("#partyTable tr");
+        rows.forEach(row => {
+            let name = row.cells[1]?.innerText.toLowerCase();
+            row.style.display = name && name.includes(input) ? "" : "none";
+        });
+    }
+</script>
 
 </body>
 </html>

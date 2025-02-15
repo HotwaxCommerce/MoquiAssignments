@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<service-facade xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-service-2.1.xsd"
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
   <service verb="get" noun="PartyList" name="getPartyList"
            type="entity-auto" default-entity-name="Party"
            require-new-transaction="true" allow-user="true">

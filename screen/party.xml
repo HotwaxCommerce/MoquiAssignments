@@ -2,10 +2,17 @@
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         require-authentication="anonymous-all">
+
+  <!-- Define Subscreens -->
+  <subscreens default-item="FindParty" always-use-full-path="true">
+  </subscreens>
+
+  <!-- Widgets Section -->
   <widgets>
     <label type="h1" text="RelationshipMgr Assignment"/>
     <render-mode>
       <text type="html,vuet" location="component://relationshipMgr/screen/party/partyScreen.html"/>
     </render-mode>
   </widgets>
+
 </screen>
